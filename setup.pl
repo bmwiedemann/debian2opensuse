@@ -11,10 +11,13 @@ my $html=get($URL);
 $html =~ m/a href="($img-[^"]*.rpm)"/ || die "$img not found on $URL";
 my $imgfile = $1;
 my $imgURL = $URL.$imgfile;
-if (! -e $imgfile) {
-    system("wget -N $imgURL") && die "wget $imgURL failed";
+if (! -e "img.qcow2") {
+    if (! -e $imgfile) {
+        system("wget -N $imgURL") && die "wget $imgURL failed";
+    }
+    system "rpm2cpio $imgfile | cpio --extract --to-stdout > img.qcow2";
+    unlink $imgfile;
 }
-system "rpm2cpio $imgfile | cpio --extract --to-stdout > img.qcow2";
 system "qemu-img convert img.qcow2 $tmp/img";
 #system "grub-install $disk";
 
