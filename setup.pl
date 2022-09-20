@@ -47,9 +47,12 @@ if($ENV{REALLY}) {
     sleep 1;
     # write to disk
     system "dd if=$tmp/img of=$disk bs=1M";
-    sleep 1;
+    open(F, ">/proc/sys/vm/drop_caches"); print F "3\n";close(F);
+    sleep 3;
     sysrq "s";
-    sleep 1;
+    sleep 3;
+    sysrq "s";
+    sleep 3;
     sysrq "b"; # reboot
 }
 
