@@ -1,6 +1,11 @@
 Replace a Debian or other Linux VM with an openSUSE image
 because some hosters only offer other distributions.
 
+## Pre-requisites
+
+* needs 900MB space in /dev/shm
+* needs 600MB space on disk
+
 ## usage
 
 Copy this dir onto the target VM and do
