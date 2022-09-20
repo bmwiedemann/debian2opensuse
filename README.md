@@ -3,12 +3,13 @@ because some hosters only offer other distributions.
 
 ## usage
 
-Copy this dir onto the target VM, cd into it
+Copy this dir onto the target VM and do
 
 ```
+cd /path/to/debian-to-opensuse
 edit customsetup.sh
 REALLY=1 ./setup.sh
-# optional customization of openSUSE:
+# after a bit it will stop for the optional customization of openSUSE:
 chroot .
 passwd
 exit

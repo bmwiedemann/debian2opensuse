@@ -1,6 +1,6 @@
 #!/bin/sh
 apt -yy update
-apt -y install wget rpm qemu-utils libwww-perl
+apt -y install wget libgnutls30 ca-certificates rpm qemu-utils libwww-perl
 ./customsetup.sh
 
 # fetch perl script
