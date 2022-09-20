@@ -21,10 +21,13 @@ if (! -e "img.qcow2") {
 system "qemu-img convert img.qcow2 $tmp/img";
 #system "grub-install $disk";
 
-# customization 
-print "time for some customization in /mnt...\n";
 system "mount -o loop,offset=1048576 $tmp/img /mnt";
 chdir "/mnt";
+# keep some stuff around
+system "cp -a /root/.ssh root/";
+system "cp -a /etc/ssh/ssh_host_* etc/ssh/";
+# customization
+print "time for some customization in /mnt...\n";
 system "bash -i";
 chdir "/";
 system "umount /mnt";
@@ -36,7 +39,7 @@ sub sysrq($) {
     close $fd;
 }
 if($ENV{REALLY}) {
-    system "swapoff -a"; # could screw up our new data
+    system "swapoff -a"; # active swap could screw up our new data
     # read-only mount old rootfs
     sysrq "s";
     sysrq "u";
