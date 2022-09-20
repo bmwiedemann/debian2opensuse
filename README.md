@@ -11,7 +11,7 @@ because some hosters only offer other distributions.
 Copy this dir onto the target VM and do
 
 ```
-cd /path/to/debian-to-opensuse
+cd /path/to/debian2opensuse
 edit customsetup.sh
 REALLY=1 ./setup.sh
 # after a bit it will stop for the optional customization of openSUSE:
