@@ -40,6 +40,8 @@ sub sysrq($) {
 }
 if($ENV{REALLY}) {
     system "swapoff -a"; # active swap could screw up our new data
+    open(F, ">/proc/sys/vm/drop_caches"); print F "3\n";close(F);
+    system "sync"; # ensure all dirty data is written
     # read-only mount old rootfs
     sysrq "s";
     sysrq "u";
